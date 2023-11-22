@@ -2,15 +2,9 @@
   "api": [
     {
       "id": 2,
-      "price": 10,
-      "name": "Apple",
-      "quantity": 5
-    },
-    {
-      "id": 3,
-      "price": 15,
-      "name": "Orange",
-      "quantity": 3
+      "name": "Grapes",
+      "price": 12,
+      "quantity": 8
     },
     {
       "id": 4,
@@ -23,6 +17,18 @@
       "name": "Mandel",
       "price": "2",
       "quantity": "2"
+    },
+    {
+      "id": 6,
+      "price": 8,
+      "name": "Grapes",
+      "quantity": 7
+    },
+    {
+      "price": 8,
+      "name": "Grapes",
+      "quantity": 7,
+      "id": 7
     }
   ]
 }

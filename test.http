@@ -1,0 +1,29 @@
+# Get all items
+GET http://localhost:3001/api
+
+### Get a specific item by ID
+GET http://localhost:3001/api/2
+
+### Add a new item
+POST http://localhost:3001/api
+Content-Type: application/json
+
+{
+  "price": 8,
+  "name": "Grapes",
+  "quantity": 7
+}
+
+### Update an existing item by ID
+PUT http://localhost:3001/api/2
+Content-Type: application/json
+
+{
+  "id": 2,
+  "name": "Grapes",
+  "price": 12,
+  "quantity": 8
+}
+
+### Delete an item by ID
+DELETE http://localhost:3001/api/3
