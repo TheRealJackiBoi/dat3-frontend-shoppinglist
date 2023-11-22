@@ -29,7 +29,7 @@ Make sure you have Node.js and npm installed before running the application.
 2. Navigate to the project directory:
 
     ```bash
-    cd react-shopping-list
+    cd dat3-frontend-shoppinglist
     ```
 
 3. Install dependencies:
