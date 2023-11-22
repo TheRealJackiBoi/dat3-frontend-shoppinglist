@@ -11,24 +11,6 @@
       "name": "Kiwi",
       "price": "2",
       "quantity": "9"
-    },
-    {
-      "id": 5,
-      "name": "Mandel",
-      "price": "2",
-      "quantity": "2"
-    },
-    {
-      "id": 6,
-      "price": 8,
-      "name": "Grapes",
-      "quantity": 7
-    },
-    {
-      "price": 8,
-      "name": "Grapes",
-      "quantity": 7,
-      "id": 7
     }
   ]
 }

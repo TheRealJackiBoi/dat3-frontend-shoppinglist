@@ -21,8 +21,8 @@ function App() {
   }, []);
 
 
-  async function addShoppingListItem(item, list) {
-    await createItem(shoppingCart, item);
+  async function addShoppingListItem(item) {
+    await createItem(item);
     fetchItems();
   }
 
@@ -38,8 +38,6 @@ function App() {
       <ShoppingList list={shoppingCart} onDeleteItem={onDeleteItem} />
 
       <InputComponent
-          nextId={shoppingCart.length}
-          shoppingCart={shoppingCart}
           addShoppingListItem={addShoppingListItem}
       />
     </div>

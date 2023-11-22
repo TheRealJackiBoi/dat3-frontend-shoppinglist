@@ -1,14 +1,10 @@
 import { useEffect, useRef, useState } from "react";
 
-function InputComponent({ nextId, addShoppingListItem, shoppingCart }) {
-  const [id, setId] = useState(nextId);
+function InputComponent({addShoppingListItem }) {
   const itemRef = useRef(null);
   const priceRef = useRef(null);
   const quantityRef = useRef(null);
 
-  useEffect(() => {
-    setId(nextId);
-  },[nextId]);
 
   return (
       <div className="my-4 mx-auto w-6/12 bg-fuchsia-200 rounded p-4">
@@ -49,12 +45,10 @@ function InputComponent({ nextId, addShoppingListItem, shoppingCart }) {
               onClick={() => {
                   // persist the new item to the database
                   addShoppingListItem({
-                      id: id,
                       name: itemRef.current.value,
                       price: priceRef.current.value,
                       quantity: quantityRef.current.value,
-                  },
-                      shoppingCart)
+                  })
 
                     // reset the input fields
                   itemRef.current.value = ""
