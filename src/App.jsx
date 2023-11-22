@@ -1,33 +1,47 @@
-import { useState } from "react";
+import {useEffect, useLayoutEffect, useState} from "react";
 import "./App.css";
 import InputComponent from "./components/InputComponent";
 import ShoppingList from "./components/ShoppingList";
+import { getItems, getItem, createItem, updateItem, deleteItem } from "./api/api.js";
 
 function App() {
 
-  {/* change this to database */}
-  const initialShoppingCart = [
-    { id: 1, price: 10, name: "Apple", quantity: 1 },
-    { id: 2, price: 20, name: "Orange", quantity: 1 },
-    { id: 3, price: 30, name: "Banana", quantity: 1 },
-    { id: 4, price: 40, name: "Grapes", quantity: 4 },
-  ];
+  const [shoppingCart, setShoppingCart] = useState([]);
 
-  const [shoppingCart, setShoppingCart] = useState(initialShoppingCart);
-  const addShoppingListItem = (item) => {
-    setShoppingCart([...shoppingCart, item]);
+  async function fetchItems() {
+    const items = await getItems();
+    setShoppingCart(await items);
+  }
+
+  useEffect(() => {
+
+    fetchItems();
+
+
+  }, []);
+
+
+  async function addShoppingListItem(item, list) {
+    await createItem(shoppingCart, item);
+    fetchItems();
+  }
+
+  async function onDeleteItem(id) {
+    await deleteItem(id);
+    fetchItems();
   }
 
   return (
-    <div className="flex">
-      <h1 className="text-3xl font-bold underline">Hello world!</h1>
-      <div className="w-400 bg-white shadow rounded">
-        <ShoppingList list={shoppingCart} />
-        <InputComponent
-          nextId={shoppingCart.length + 1}
+    <div className="">
+      <h1 className="text-3xl font-bold text-center my-2">Shoppinglist</h1>
+
+      <ShoppingList list={shoppingCart} onDeleteItem={onDeleteItem} />
+
+      <InputComponent
+          nextId={shoppingCart.length}
+          shoppingCart={shoppingCart}
           addShoppingListItem={addShoppingListItem}
-        />
-      </div>
+      />
     </div>
   );
 }

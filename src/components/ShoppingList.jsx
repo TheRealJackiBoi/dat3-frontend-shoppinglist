@@ -1,31 +1,38 @@
-function ShoppingList({ list }) {
+function ShoppingList({ list, onDeleteItem }) {
   return (
-    <div>
-      <h2 className="text-3xl font-bold underline w-100">Her er din indkøbesliste</h2>
-      <table>
-        <thead>
-        
+      <div className="overflow-x-auto">
+        <h2 className="text-2xl text-fuchsia-600 w-100 text-center ">Her er din indkøbesliste</h2>
+
+        <table className="w-full sm:w-11/12 sm:mx-auto md:w-9/12 lg:max-w-4xl xl:max-w-6xl mx-auto rounded overflow-hidden shadow-lg bg-white">
+          <thead className="bg-gray-800 text-white">
           <tr>
-            <th className="px-4 py-2">id</th>
-            <th className="px-4 py-2">name</th>
-            <th className="px-4 py-2">price</th>
-            <th className="px-4 py-2">quantity</th>
+            <th className="px-4 py-2">ID</th>
+            <th className="px-4 py-2">Name</th>
+            <th className="px-4 py-2">Quantity</th>
+            <th className="px-4 py-2">Price</th>
+            <th className="px-4 py-2">Actions</th>
           </tr>
-        </thead>
-        <tbody>
-          {list.map((item) => {
-            return (
-              <tr key={item.id}>
-                <td>{item.id}</td>
-                <td>{item.name}</td>
-                <td>{item.price}</td>
-                <td>{item.quantity}</td>
+          </thead>
+          <tbody>
+          {list.map((item) => (
+              <tr key={item.id} className="border-b">
+                <td className="px-4 py-2">{item.id}</td>
+                <td className="px-4 py-2">{item.name}</td>
+                <td className="px-4 py-2">{item.quantity}</td>
+                <td className="px-4 py-2">{item.price}</td>
+                <td className="px-4 py-2">
+                  <button
+                      className="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded"
+                      onClick={() => onDeleteItem(item.id)}
+                  >
+                    Delete
+                  </button>
+                </td>
               </tr>
-            );
-          })}
-        </tbody>
-      </table>
-    </div>
+          ))}
+          </tbody>
+        </table>
+      </div>
   );
 }
 
