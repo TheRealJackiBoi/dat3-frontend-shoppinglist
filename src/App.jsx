@@ -31,11 +31,16 @@ function App() {
     fetchItems();
   }
 
+  async function onUpdateItem(item) {
+    await updateItem(item);
+    fetchItems();
+  }
+
   return (
     <div className="">
       <h1 className="text-3xl font-bold text-center my-2">Shoppinglist</h1>
 
-      <ShoppingList list={shoppingCart} onDeleteItem={onDeleteItem} />
+      <ShoppingList list={shoppingCart} onDeleteItem={onDeleteItem} onUpdateItem={onUpdateItem} />
 
       <InputComponent
           addShoppingListItem={addShoppingListItem}
