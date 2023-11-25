@@ -136,7 +136,7 @@ function ShoppingList({ list, onDeleteItem, onUpdateItem }) {
         </tbody>
       </table>
       <p className="text-center mx-auto py-4">
-        You have {list.length} differnt items on your list, for a total of: {totalPrice}$
+        You have {list.length} different items on your list, for a total of: {totalPrice}$
       </p>
     </div>
   );

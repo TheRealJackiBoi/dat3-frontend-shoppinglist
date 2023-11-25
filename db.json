@@ -19,7 +19,7 @@
       "name": "blåbær",
       "quantity": "21",
       "price": "5",
-      "pickedUp": true
+      "pickedUp": false
     },
     {
       "id": 8,
