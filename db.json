@@ -11,15 +11,14 @@
       "id": 6,
       "name": "Kokos",
       "quantity": "25",
-      "price": "4",
-      "pickedUp": true
+      "price": "4"
     },
     {
       "id": 7,
       "name": "blåbær",
       "quantity": "21",
-      "price": "5",
-      "pickedUp": false
+      "price": "51",
+      "pickedUp": true
     },
     {
       "id": 8,

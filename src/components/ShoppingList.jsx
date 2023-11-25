@@ -4,20 +4,38 @@ function ShoppingList({ list, onDeleteItem, onUpdateItem }) {
   const [isUpdating, setIsUpdating] = useState(false);
   const [updatingItem, setUpdatingItem] = useState({});
 
+  const [valuta, setValuta] = useState("kr");
+
+  const handleValutaChange = (e) => {
+    setValuta(e.target.value);
+  };
+
   const itemNameRef = useRef(null);
   const priceRef = useRef(null);
   const quantityRef = useRef(null);
+  {
+    /* pickedupref might not be needed */
+  }
   const pickedUpRef = useRef(null);
 
-  const totalArray = list.map(item => parseFloat(item.price));
+  const totalArray = list.map((item) => parseFloat(item.price));
   const totalPrice = totalArray.reduce((total, price) => total + price, 0);
 
   return (
     <div className="overflow-x-auto">
       <h2 className="text-3xl text-purple-700 text-center mb-4">
-        Your Shopping List
+        Your Shopping List {valuta}
       </h2>
-  
+      <div className="text-center mx-auto">
+        <select onChange={handleValutaChange}>
+          <option value="kr">Danish krone</option>
+          <option value="¥">Yen</option>
+          <option value="€">Euro</option>
+          <option value="$">USD</option>
+          <option value="£">Pund</option>
+        </select>
+      </div>
+
       <table className="w-full sm:w-11/12 sm:mx-auto md:w-9/12 lg:max-w-4xl xl:max-w-6xl mx-auto rounded overflow-hidden shadow-lg bg-white">
         <thead className="bg-gray-800 text-white">
           <tr>
@@ -46,7 +64,7 @@ function ShoppingList({ list, onDeleteItem, onUpdateItem }) {
                   <td className="px-4 py-2 text-center">
                     <input
                       type="text"
-                      pattern="[0-9]*" 
+                      pattern="[0-9]*"
                       placeholder="Quantity"
                       defaultValue={updatingItem.quantity}
                       ref={quantityRef}
@@ -56,7 +74,7 @@ function ShoppingList({ list, onDeleteItem, onUpdateItem }) {
                   <td className="px-4 py-2 text-center">
                     <input
                       type="text"
-                      pattern="[0-9]*" 
+                      pattern="[0-9]*"
                       min={0}
                       placeholder="Price"
                       defaultValue={updatingItem.price}
@@ -77,7 +95,12 @@ function ShoppingList({ list, onDeleteItem, onUpdateItem }) {
                         setIsUpdating(false);
                       }}
                     >
-                      Confirm <img type="image" src="/src/assets/confirmIcon.png" className="w-4 inline"></img>
+                      Confirm{" "}
+                      <img
+                        type="image"
+                        src="/src/assets/confirmIcon.png"
+                        className="w-4 inline"
+                      ></img>
                     </button>
                     <button
                       className="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded"
@@ -88,16 +111,39 @@ function ShoppingList({ list, onDeleteItem, onUpdateItem }) {
                       }}
                     >
                       Delete
-                      <img type="image" src="/src/assets/deleteIcon.png" className="w-4 inline"></img>
+                      <img
+                        type="image"
+                        src="/src/assets/deleteIcon.png"
+                        className="w-4 inline"
+                      ></img>
                     </button>
                   </td>
                 </>
               ) : (
                 <>
                   <td className="px-4 py-2 text-center">{item.id}</td>
-                  <td className={`px-4 py-2 text-center ${item.pickedUp ? "line-through" : ""}`}>{item.name}</td>
-                  <td className={`px-4 py-2 text-center ${item.pickedUp ? "line-through" : ""}`}>{item.quantity}</td>
-                  <td className={`px-4 py-2 text-center ${item.pickedUp ? "line-through" : ""}`}>${item.price}</td>
+                  <td
+                    className={`px-4 py-2 text-center ${
+                      item.pickedUp ? "line-through" : ""
+                    }`}
+                  >
+                    {item.name}
+                  </td>
+                  <td
+                    className={`px-4 py-2 text-center ${
+                      item.pickedUp ? "line-through" : ""
+                    }`}
+                  >
+                    {item.quantity}
+                  </td>
+                  <td
+                    className={`px-4 py-2 text-center ${
+                      item.pickedUp ? "line-through" : ""
+                    }`}
+                  >
+                    {valuta != "kr" ? valuta : ""} {item.price}{" "}
+                    {valuta == "kr" ? valuta : ""}
+                  </td>
                   <td className="px-4 py-2 text-center">
                     <button
                       className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded mr-2"
@@ -106,16 +152,30 @@ function ShoppingList({ list, onDeleteItem, onUpdateItem }) {
                         setUpdatingItem(item);
                       }}
                     >
-                      Edit <img type="image" src="/src/assets/editIcon.png" className="w-4 inline"></img>
+                      Edit{" "}
+                      <img
+                        type="image"
+                        src="/src/assets/editIcon.png"
+                        className="w-4 inline"
+                      ></img>
                     </button>
                     <button
                       className="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded mr-2"
                       onClick={() => onDeleteItem(item.id)}
                     >
-                      Delete <img type="image" src="/src/assets/deleteIcon.png" className="w-4 inline"></img>
+                      Delete{" "}
+                      <img
+                        type="image"
+                        src="/src/assets/deleteIcon.png"
+                        className="w-4 inline"
+                      ></img>
                     </button>
                     <button
-                      className={`font-bold py-1 px-2 rounded ${item.pickedUp ? "bg-orange-500 hover:bg-orange-700 text-black" : "bg-teal-500 hover:bg-teal-700 text-white"}`}
+                      className={`font-bold py-1 px-2 rounded ${
+                        item.pickedUp
+                          ? "bg-orange-500 hover:bg-orange-700 text-black"
+                          : "bg-teal-500 hover:bg-teal-700 text-white"
+                      }`}
                       onClick={async () => {
                         await onUpdateItem({
                           id: item.id,
@@ -126,17 +186,27 @@ function ShoppingList({ list, onDeleteItem, onUpdateItem }) {
                         });
                       }}
                     >
-                      {item.pickedUp ? "Collected" : "Collect"}  <img type="image" src={item.pickedUp ? "/src/assets/removeFromBasketIcon.png" : "/src/assets/basketIcon.png"} className="w-4 inline"></img>
+                      {item.pickedUp ? "Collected" : "Collect"}{" "}
+                      <img
+                        type="image"
+                        src={
+                          item.pickedUp
+                            ? "/src/assets/removeFromBasketIcon.png"
+                            : "/src/assets/basketIcon.png"
+                        }
+                        className="w-4 inline"
+                      ></img>
                     </button>
                   </td>
-                  </>
+                </>
               )}
             </tr>
           ))}
         </tbody>
       </table>
       <p className="text-center mx-auto py-4">
-        You have {list.length} different items on your list, for a total of: {totalPrice}$
+        You have {list.length} different items on your list, for a total of:{" "}
+        {totalPrice}$
       </p>
     </div>
   );
