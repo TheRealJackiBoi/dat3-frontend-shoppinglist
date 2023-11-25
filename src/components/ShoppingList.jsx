@@ -7,6 +7,7 @@ function ShoppingList({ list, onDeleteItem, onUpdateItem }) {
   const itemNameRef = useRef(null);
   const priceRef = useRef(null);
   const quantityRef = useRef(null);
+  const pickedUpRef = useRef(null);
 
   const totalArray = list.map(item => parseFloat(item.price));
   const totalPrice = totalArray.reduce((total, price) => total + price, 0);
@@ -94,9 +95,9 @@ function ShoppingList({ list, onDeleteItem, onUpdateItem }) {
               ) : (
                 <>
                   <td className="px-4 py-2 text-center">{item.id}</td>
-                  <td className="px-4 py-2 text-center">{item.name}</td>
-                  <td className="px-4 py-2 text-center">{item.quantity}</td>
-                  <td className="px-4 py-2 text-center">${item.price}</td>
+                  <td className={`px-4 py-2 text-center ${item.pickedUp ? "line-through" : ""}`}>{item.name}</td>
+                  <td className={`px-4 py-2 text-center ${item.pickedUp ? "line-through" : ""}`}>{item.quantity}</td>
+                  <td className={`px-4 py-2 text-center ${item.pickedUp ? "line-through" : ""}`}>${item.price}</td>
                   <td className="px-4 py-2 text-center">
                     <button
                       className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded mr-2"
@@ -108,10 +109,24 @@ function ShoppingList({ list, onDeleteItem, onUpdateItem }) {
                       Edit <img type="image" src="/src/assets/editIcon.png" className="w-4 inline"></img>
                     </button>
                     <button
-                      className="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded"
+                      className="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded mr-2"
                       onClick={() => onDeleteItem(item.id)}
                     >
                       Delete <img type="image" src="/src/assets/deleteIcon.png" className="w-4 inline"></img>
+                    </button>
+                    <button
+                      className={`font-bold py-1 px-2 rounded ${item.pickedUp ? "bg-orange-500 hover:bg-orange-700 text-black" : "bg-teal-500 hover:bg-teal-700 text-white"}`}
+                      onClick={async () => {
+                        await onUpdateItem({
+                          id: item.id,
+                          name: item.name,
+                          quantity: item.quantity,
+                          price: item.price,
+                          pickedUp: !item.pickedUp,
+                        });
+                      }}
+                    >
+                      {item.pickedUp ? "Collected" : "Collect"}  <img type="image" src={item.pickedUp ? "/src/assets/removeFromBasketIcon.png" : "/src/assets/basketIcon.png"} className="w-4 inline"></img>
                     </button>
                   </td>
                   </>

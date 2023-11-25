@@ -2,27 +2,31 @@
   "api": [
     {
       "id": 2,
-      "name": "jack",
+      "name": "Jackhammer",
       "quantity": "2",
-      "price": "10"
+      "price": "10",
+      "pickedUp": false
     },
     {
       "id": 6,
       "name": "Kokos",
       "quantity": "25",
-      "price": "4"
+      "price": "4",
+      "pickedUp": true
     },
     {
       "id": 7,
       "name": "blåbær",
       "quantity": "21",
-      "price": "5"
+      "price": "5",
+      "pickedUp": true
     },
     {
       "id": 8,
       "name": "Jordbær",
       "quantity": "12",
-      "price": "2"
+      "price": "2",
+      "pickedUp": true
     }
   ]
 }
