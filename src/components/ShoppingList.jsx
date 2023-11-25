@@ -8,6 +8,9 @@ function ShoppingList({ list, onDeleteItem, onUpdateItem }) {
   const priceRef = useRef(null);
   const quantityRef = useRef(null);
 
+  const totalArray = list.map(item => parseFloat(item.price));
+  const totalPrice = totalArray.reduce((total, price) => total + price, 0);
+
   return (
     <div className="overflow-x-auto">
       <h2 className="text-3xl text-purple-700 text-center mb-4">
@@ -117,6 +120,9 @@ function ShoppingList({ list, onDeleteItem, onUpdateItem }) {
           ))}
         </tbody>
       </table>
+      <p className="text-center mx-auto py-4">
+        You have {list.length} differnt items on your list, for a total of: {totalPrice}$
+      </p>
     </div>
   );
 }
