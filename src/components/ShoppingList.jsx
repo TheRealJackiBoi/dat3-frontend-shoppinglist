@@ -141,9 +141,10 @@ function ShoppingList({ list, onDeleteItem, onUpdateItem }) {
                     {valuta == "kr" ? valuta : ""}
                   </td>
                   <td className="px-4 py-2 text-center">
-                      <div className="flex justify-center space-x-2">
+                      <div className="flex justify-center">
+                        <td className="mx-auto">
                         <button
-                          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded min-w-[100px]"
+                          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded "
                           onClick={() => {
                             setIsUpdating(true);
                             setUpdatingItem(item);
@@ -157,8 +158,10 @@ function ShoppingList({ list, onDeleteItem, onUpdateItem }) {
                             alt="edit"
                           ></img>
                         </button>
+                        </td>
+                        <td className="mx-auto">
                         <button
-                          className="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded min-w-[100px]"
+                          className="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded "
                           onClick={() => onDeleteItem(item.id)}
                         >
                           Delete{" "}
@@ -169,11 +172,13 @@ function ShoppingList({ list, onDeleteItem, onUpdateItem }) {
                             alt="delete"
                           ></img>
                         </button>
+                        </td>
+                        <td className="mx-auto ">
                         <button
                           className={`font-bold py-1 px-2 rounded ${
                             item.pickedUp
-                              ? "bg-orange-500 hover:bg-orange-700 text-black min-w-[110px]"
-                              : "bg-teal-500 hover:bg-teal-700 text-white min-w-[110px]"
+                              ? "bg-orange-500 hover:bg-orange-700 text-black"
+                              : "bg-teal-500 hover:bg-teal-700 text-white"
                           }`}
                           onClick={async () => {
                             await onUpdateItem({
@@ -197,6 +202,7 @@ function ShoppingList({ list, onDeleteItem, onUpdateItem }) {
                             alt="collect"
                           ></img>
                         </button>
+                        </td>
                       </div>
                     </td>
                 </>

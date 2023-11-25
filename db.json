@@ -11,14 +11,15 @@
       "id": 7,
       "name": "blåbær",
       "quantity": "21",
-      "price": "51"
+      "price": "51",
+      "pickedUp": false
     },
     {
       "id": 8,
       "name": "Jordbær",
       "quantity": "12",
       "price": "2",
-      "pickedUp": true
+      "pickedUp": false
     },
     {
       "id": 9,
