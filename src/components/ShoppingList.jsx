@@ -73,7 +73,7 @@ function ShoppingList({ list, onDeleteItem, onUpdateItem }) {
                         setIsUpdating(false);
                       }}
                     >
-                      Confirm
+                      Confirm <img type="image" src="/src/assets/confirmIcon.png" className="w-4 inline"></img>
                     </button>
                     <button
                       className="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded"
@@ -84,6 +84,7 @@ function ShoppingList({ list, onDeleteItem, onUpdateItem }) {
                       }}
                     >
                       Delete
+                      <img type="image" src="/src/assets/deleteIcon.png" className="w-4 inline"></img>
                     </button>
                   </td>
                 </>
@@ -101,13 +102,13 @@ function ShoppingList({ list, onDeleteItem, onUpdateItem }) {
                         setUpdatingItem(item);
                       }}
                     >
-                      Edit
+                      Edit <img type="image" src="/src/assets/editIcon.png" className="w-4 inline"></img>
                     </button>
                     <button
                       className="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded"
                       onClick={() => onDeleteItem(item.id)}
                     >
-                      Delete
+                      Delete <img type="image" src="/src/assets/deleteIcon.png" className="w-4 inline"></img>
                     </button>
                   </td>
                   </>
