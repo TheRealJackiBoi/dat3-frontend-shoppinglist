@@ -13,10 +13,6 @@ function ShoppingList({ list, onDeleteItem, onUpdateItem }) {
   const itemNameRef = useRef(null);
   const priceRef = useRef(null);
   const quantityRef = useRef(null);
-  {
-    /* pickedupref might not be needed */
-  }
-  const pickedUpRef = useRef(null);
 
   const totalArray = list.map((item) => parseFloat(item.price));
   const totalPrice = totalArray.reduce((total, price) => total + price, 0);
@@ -24,17 +20,17 @@ function ShoppingList({ list, onDeleteItem, onUpdateItem }) {
   return (
     <div className="overflow-x-auto">
       <h2 className="text-3xl text-purple-700 text-center mb-4">
-        Your Shopping List {valuta}
+        Your Shopping List
       </h2>
-      <div className="text-center mx-auto">
-        <select onChange={handleValutaChange}>
+      <div>
+        <select className="mx-auto text-white bg-gray-800 block border border-info py-2" onChange={handleValutaChange}>
           <option value="kr">Danish krone</option>
           <option value="¥">Yen</option>
           <option value="€">Euro</option>
           <option value="$">USD</option>
           <option value="£">Pund</option>
         </select>
-      </div>
+      
 
       <table className="w-full sm:w-11/12 sm:mx-auto md:w-9/12 lg:max-w-4xl xl:max-w-6xl mx-auto rounded overflow-hidden shadow-lg bg-white">
         <thead className="bg-gray-800 text-white">
@@ -43,7 +39,7 @@ function ShoppingList({ list, onDeleteItem, onUpdateItem }) {
             <th className="px-4 py-2">Name</th>
             <th className="px-4 py-2">Quantity</th>
             <th className="px-4 py-2">Price</th>
-            <th className="px-4 py-2">Actions</th>
+            <th className="px-4 py-2" >Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -145,68 +141,75 @@ function ShoppingList({ list, onDeleteItem, onUpdateItem }) {
                     {valuta == "kr" ? valuta : ""}
                   </td>
                   <td className="px-4 py-2 text-center">
-                    <button
-                      className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded mr-2"
-                      onClick={() => {
-                        setIsUpdating(true);
-                        setUpdatingItem(item);
-                      }}
-                    >
-                      Edit{" "}
-                      <img
-                        type="image"
-                        src="/src/assets/editIcon.png"
-                        className="w-4 inline"
-                      ></img>
-                    </button>
-                    <button
-                      className="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded mr-2"
-                      onClick={() => onDeleteItem(item.id)}
-                    >
-                      Delete{" "}
-                      <img
-                        type="image"
-                        src="/src/assets/deleteIcon.png"
-                        className="w-4 inline"
-                      ></img>
-                    </button>
-                    <button
-                      className={`font-bold py-1 px-2 rounded ${
-                        item.pickedUp
-                          ? "bg-orange-500 hover:bg-orange-700 text-black"
-                          : "bg-teal-500 hover:bg-teal-700 text-white"
-                      }`}
-                      onClick={async () => {
-                        await onUpdateItem({
-                          id: item.id,
-                          name: item.name,
-                          quantity: item.quantity,
-                          price: item.price,
-                          pickedUp: !item.pickedUp,
-                        });
-                      }}
-                    >
-                      {item.pickedUp ? "Collected" : "Collect"}{" "}
-                      <img
-                        type="image"
-                        src={
-                          item.pickedUp
-                            ? "/src/assets/removeFromBasketIcon.png"
-                            : "/src/assets/basketIcon.png"
-                        }
-                        className="w-4 inline"
-                      ></img>
-                    </button>
-                  </td>
+                      <div className="flex justify-center space-x-2">
+                        <button
+                          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded min-w-[100px]"
+                          onClick={() => {
+                            setIsUpdating(true);
+                            setUpdatingItem(item);
+                          }}
+                        >
+                          Edit{" "}
+                          <img
+                            type="image"
+                            src="/src/assets/editIcon.png"
+                            className="w-4 inline"
+                            alt="edit"
+                          ></img>
+                        </button>
+                        <button
+                          className="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded min-w-[100px]"
+                          onClick={() => onDeleteItem(item.id)}
+                        >
+                          Delete{" "}
+                          <img
+                            type="image"
+                            src="/src/assets/deleteIcon.png"
+                            className="w-4 inline"
+                            alt="delete"
+                          ></img>
+                        </button>
+                        <button
+                          className={`font-bold py-1 px-2 rounded ${
+                            item.pickedUp
+                              ? "bg-orange-500 hover:bg-orange-700 text-black min-w-[110px]"
+                              : "bg-teal-500 hover:bg-teal-700 text-white min-w-[110px]"
+                          }`}
+                          onClick={async () => {
+                            await onUpdateItem({
+                              id: item.id,
+                              name: item.name,
+                              quantity: item.quantity,
+                              price: item.price,
+                              pickedUp: !item.pickedUp,
+                            });
+                          }}
+                        >
+                          {item.pickedUp ? "Collected" : "Collect"}{" "}
+                          <img
+                            type="image"
+                            src={
+                              item.pickedUp
+                                ? "/src/assets/removeFromBasketIcon.png"
+                                : "/src/assets/basketIcon.png"
+                            }
+                            className="w-4 inline"
+                            alt="collect"
+                          ></img>
+                        </button>
+                      </div>
+                    </td>
                 </>
               )}
             </tr>
           ))}
         </tbody>
       </table>
+      </div>
       <p className="text-center mx-auto py-4">
         You have {list.length} different items on your list, for a total of:{" "}
-        {totalPrice}$
+        {valuta != "kr" ? valuta : ""} {totalPrice}{" "}
+        {valuta == "kr" ? valuta : ""}
       </p>
     </div>
   );

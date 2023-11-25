@@ -8,17 +8,10 @@
       "pickedUp": false
     },
     {
-      "id": 6,
-      "name": "Kokos",
-      "quantity": "25",
-      "price": "4"
-    },
-    {
       "id": 7,
       "name": "blåbær",
       "quantity": "21",
-      "price": "51",
-      "pickedUp": true
+      "price": "51"
     },
     {
       "id": 8,
@@ -26,6 +19,13 @@
       "quantity": "12",
       "price": "2",
       "pickedUp": true
+    },
+    {
+      "id": 9,
+      "name": "Slik",
+      "quantity": "1",
+      "price": "23",
+      "pickedUp": false
     }
   ]
 }
