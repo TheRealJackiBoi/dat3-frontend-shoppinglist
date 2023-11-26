@@ -1,22 +1,32 @@
 {
-  "api": [
-    {
-      "id": 2,
-      "name": "jack",
-      "quantity": "2",
-      "price": "232"
-    },
-    {
-      "id": 6,
-      "name": "Kokos",
-      "quantity": "25",
-      "price": "4"
-    },
-    {
-      "id": 7,
-      "name": "Jordbær",
-      "quantity": "35",
-      "price": "5"
-    }
-  ]
+"api": [
+  {
+    "id": 2,
+    "name": "Jackhammer",
+    "quantity": "2",
+    "price": "10",
+    "pickedUp": false
+  },
+  {
+    "id": 7,
+    "name": "blåbær",
+    "quantity": "21",
+    "price": "51",
+    "pickedUp": false
+  },
+  {
+    "id": 8,
+    "name": "Jordbær",
+    "quantity": "12",
+    "price": "2",
+    "pickedUp": false
+  },
+  {
+    "id": 9,
+    "name": "Slik",
+    "quantity": "1",
+    "price": "23",
+    "pickedUp": false
+  }
+]
 }
