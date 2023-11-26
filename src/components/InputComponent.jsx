@@ -48,6 +48,7 @@ function InputComponent({addShoppingListItem }) {
                       name: itemRef.current.value,
                       price: priceRef.current.value,
                       quantity: quantityRef.current.value,
+                      pickedUp: false,
                   })
 
                     // reset the input fields
