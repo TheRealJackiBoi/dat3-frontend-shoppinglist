@@ -23,7 +23,7 @@ function ShoppingList({ list, onDeleteItem, onUpdateItem }) {
         Your Shopping List
       </h2>
       <div>
-        <select className="mx-auto text-white bg-gray-800 block border border-info py-2" onChange={handleValutaChange}>
+        <select className="mx-auto my-2 px-1 rounded text-white bg-gray-800 block border border-info py-2" onChange={handleValutaChange}>
           <option value="kr">Danish krone</option>
           <option value="¥">Yen</option>
           <option value="€">Euro</option>
@@ -47,7 +47,9 @@ function ShoppingList({ list, onDeleteItem, onUpdateItem }) {
             <tr key={item.id} className="border-b">
               {isUpdating && updatingItem.id === item.id ? (
                 <>
+                {/* Editing view */}
                   <td className="px-4 py-2 text-center">{item.id}</td>
+                  {/* Item Name */}
                   <td className="px-4 py-2 text-center">
                     <input
                       type="text"
@@ -57,6 +59,7 @@ function ShoppingList({ list, onDeleteItem, onUpdateItem }) {
                       className="block w-9/12 mx-auto my-2 p-2 border border-gray-300 rounded text-center"
                     />
                   </td>
+                  {/* Quantity of item */}
                   <td className="px-4 py-2 text-center">
                     <input
                       type="text"
@@ -67,6 +70,7 @@ function ShoppingList({ list, onDeleteItem, onUpdateItem }) {
                       className="block w-9/12 mx-auto my-2 p-2 border border-gray-300 rounded text-center"
                     />
                   </td>
+                  {/* Price of item */}
                   <td className="px-4 py-2 text-center">
                     <input
                       type="text"
@@ -78,6 +82,7 @@ function ShoppingList({ list, onDeleteItem, onUpdateItem }) {
                       className="block w-9/12 mx-auto my-2 p-2 border border-gray-300 rounded text-center"
                     />
                   </td>
+                  {/* Opperation buttons */}
                   <td className="px-4 py-2 text-center">
                     <button
                       className="bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-2 rounded mr-2"
@@ -117,7 +122,9 @@ function ShoppingList({ list, onDeleteItem, onUpdateItem }) {
                 </>
               ) : (
                 <>
+                {/* Normal view - Not editing */}
                   <td className="px-4 py-2 text-center">{item.id}</td>
+                  {/* Item name */}
                   <td
                     className={`px-4 py-2 text-center ${
                       item.pickedUp ? "line-through" : ""
@@ -125,6 +132,7 @@ function ShoppingList({ list, onDeleteItem, onUpdateItem }) {
                   >
                     {item.name}
                   </td>
+                  {/* Quantity of item */}
                   <td
                     className={`px-4 py-2 text-center ${
                       item.pickedUp ? "line-through" : ""
@@ -132,6 +140,7 @@ function ShoppingList({ list, onDeleteItem, onUpdateItem }) {
                   >
                     {item.quantity}
                   </td>
+                  {/* Price of item */}
                   <td
                     className={`px-4 py-2 text-center ${
                       item.pickedUp ? "line-through" : ""
@@ -140,6 +149,7 @@ function ShoppingList({ list, onDeleteItem, onUpdateItem }) {
                     {valuta != "kr" ? valuta : ""} {item.price}{" "}
                     {valuta == "kr" ? valuta : ""}
                   </td>
+                  {/* Opperation buttons */}
                   <td className="px-4 py-2 text-center">
                       <div className="flex justify-center">
                         <td className="mx-auto">
@@ -212,6 +222,7 @@ function ShoppingList({ list, onDeleteItem, onUpdateItem }) {
         </tbody>
       </table>
       </div>
+      {/* Total price of items */}
       <p className="text-center mx-auto py-4">
         You have {list.length} different items on your list, for a total of:{" "}
         {valuta != "kr" ? valuta : ""} {totalPrice}{" "}

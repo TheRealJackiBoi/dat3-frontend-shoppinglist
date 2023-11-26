@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 
-function InputComponent({addShoppingListItem }) {
+function InputComponent({ addShoppingListItem }) {
   const itemRef = useRef(null);
   const priceRef = useRef(null);
   const quantityRef = useRef(null);

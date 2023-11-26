@@ -6,6 +6,13 @@
       "quantity": "2",
       "pickedUp": false,
       "id": 2
+    },
+    {
+      "name": "Banan",
+      "price": "5",
+      "quantity": "2",
+      "pickedUp": false,
+      "id": 3
     }
   ]
 }
